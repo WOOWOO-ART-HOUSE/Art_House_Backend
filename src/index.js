@@ -1,6 +1,8 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
+
 import connectDB from './db/connectDb.js';
 import authRouter from './routes/auth.route.js';
 dotenv.config();
@@ -17,6 +19,8 @@ app.use(
   }),
 );
 app.use(express.json());
+app.use(cookieParser());
+app.use(express.urlencoded({extended: true}));
 
 app.use('/arthouse/api/v1/auth', authRouter);
 
